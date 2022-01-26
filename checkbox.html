@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    div {
+        margin: auto;
+        width: 206px;
+        text-align: center;
+    }
+    
+    table {
+        text-align: center;
+    }
+    
+    th,
+    td {
+        width: 175px;
+        display: inline-block;
+    }
+    
+    tr {
+        background-color: rgba(117, 117, 117, 0.3);
+    }
+    
+    .a {
+        width: 25px;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <th class="a"><input type="checkbox"></th>
+                <th>asdfghjkl</th>
+            </tr>
+            <tr>
+                <td class="a"><input type="checkbox"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="a"><input type="checkbox"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="a"><input type="checkbox"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="a"><input type="checkbox"></td>
+                <td></td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+<script>
+    var trs = document.getElementsByTagName('tr');
+    for (var i = 0; i < trs.length; i++) {
+        if (i % 2) {
+            trs[i].style.backgroundColor = 'pink';
+        }
+    }
+    var cb = document.getElementsByTagName('input');
+    cb[0].onclick = function() {
+        for (var i = 1; i < cb.length; i++) {
+            cb[i].checked = cb[0].checked;
+        }
+    }
+    var flag = cb.length - 1;
+
+    for (var i = 1; i < cb.length; i++) {
+        cb[i].onclick = function() {
+            pan();
+            //正常实现全选
+            // if (cb[1].checked && cb[2].checked && cb[3].checked && cb[4].checked) {
+            //     cb[0].checked = true;
+            //     console.log('allin!');
+            // }
+
+        }
+    }
+    //递归实现全选
+    function pan() {
+
+        if (flag > 0 && cb[flag].checked == true) {
+            console.log(flag);
+            flag--;
+            pan();
+        }
+        if (flag == 0) {
+            cb[flag].checked = true;
+        }
+    }
+
+
+    // for (var i = 1; i < cb.length; i++) {
+    //     cb[i].onclick = pan();
+
+    // }
+</script>
+
+</html>

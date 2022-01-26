@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .w {
+            width: 500px;
+            margin: auto;
+        }
+        
+        .tab {
+            margin-top: 200px;
+        }
+        /* 子级tab_list默认会继承父级tab的宽高 */
+        
+        .tab_list {
+            /* width: 500px; */
+            height: 30px;
+            text-align: center;
+        }
+        
+        li {
+            list-style-type: none;
+        }
+        
+        .tab_list li {
+            float: left;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #F7F7F7;
+            cursor: pointer;
+        }
+        
+        .tab_list .current {
+            color: #F7F7F7;
+            background-color: #E4393C;
+        }
+        
+        .item {
+            /* visibility: hidden; */
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab w">
+        <div class="tab_list">
+            <ul>
+                <li class="current">AAA</li>
+                <li>BBB</li>
+                <li>CCC</li>
+                <li>DDD</li>
+                <li>EEE</li>
+            </ul>
+        </div>
+        <div class="tab_content">
+            <div class="item">
+                A
+            </div>
+            <div class="item">
+                B
+            </div>
+            <div class="item">
+                C
+            </div>
+            <div class="item">
+                D
+            </div>
+            <div class="item">
+                E
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //获取元素
+    var selectedTab = document.getElementsByTagName('li');
+    var selectedItem = document.getElementsByClassName('item');
+    //第一个tab_con的item可见
+    selectedItem[0].style.display = 'block';
+    //每个li，点到的背景变红，字变灰
+    for (var i = 0; i < selectedTab.length; i++) {
+        selectedTab[i].onclick = function() {
+            selectedTab[i].style.color = '#F7F7F7';
+            selectedTab[i].style.backgroundColor = '#E4393C';
+            //点到的item显示
+            selectedItem[0].style.display = 'block';
+            //没点到的，背景变灰，字变黑
+            for (var j = 0; j < selectedTab.length; j++) {
+                if (j != i) {
+                    selectedTab[j].style.color = 'black';
+                    selectedTab[j].style.backgroundColor = '#F7F7F7';
+                    //没点到的item隐藏
+                    selectedItem[j].style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
+
+</html>

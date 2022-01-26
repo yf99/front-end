@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatTimeIsIt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .bg,
+        .hello {
+            /* background-color: pink; */
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .line {
+            margin-top: 5px;
+        }
+        
+        .content1,
+        .content2 {
+            display: inline-block;
+        }
+        
+        .content1 {
+            /* width: 40px; */
+            padding: 10px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            background-color: powderblue;
+        }
+        
+        .content2 {
+            /* width: 40px; */
+            padding: 10px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, .2);
+        }
+        
+        .switch {
+            text-align: center;
+            margin: 20px auto;
+            width: 40px;
+            /* padding: 10px; */
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            background-color: rgba(180, 59, 59, 0.705);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <div class="line">
+            <div class="content1">
+                What time is it?
+            </div>
+            <div class="content2">
+                What's the date today?
+            </div>
+        </div>
+        <div class="line">
+            <div class="content2">
+                What's the date today?
+            </div>
+            <div class="content1">
+                What time is it?
+            </div>
+        </div>
+        <div class="line">
+            <div class="content1">
+                What time is it?
+            </div>
+            <div class="content2">
+                What's the date today?
+            </div>
+
+        </div>
+        <input type="password" id="password">
+        <div class="switch">
+
+        </div>
+        <!-- <div class="line">
+            <div class="content1">
+
+            </div>
+            <div class="content2">
+
+            </div>
+        </div> -->
+
+    </div>
+    <div class="hello">
+        It is Thursday today.<br> Good morning!
+    </div>
+</body>
+<script>
+    //分时问候
+    var bg = document.querySelector('.bg');
+    var content1 = document.getElementsByClassName('content1');
+    var content2 = document.getElementsByClassName('content2');
+    //var hello = document.getElementsByClassName('hello');
+    var hello = document.querySelector('.hello');
+    var tt = new Array('morning', 'afternoon');
+    var text;
+    var originText = hello.innerHTML;
+    var date = new Date();
+    var time;
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    //console.log(content1[0]);
+    if (hour <= 12) {
+        text = tt[0];
+    } else {
+        text = tt[1];
+    }
+    if (second < 10) {
+        time = hour.toString() + ":" + minute.toString() + ":0" + second.toString();
+    } else {
+        time = hour.toString() + ":" + minute.toString() + ":" + second.toString();
+    }
+    console.log(time);
+    for (var i = 0; i < content1.length; i++) {
+        content1[i].onclick = function() {
+            hello.innerHTML = 'It is ' + time + ' now. <br>Good ' + text;
+            console.log('aaa');
+        }
+    }
+
+    for (var i = 0; i < content2.length; i++) {
+        content2[i].onclick = function() {
+            hello.innerHTML = originText;
+            console.log('aaa');
+        }
+    }
+
+    // content1.onclick = function() {
+    //     hello.innerHTML = 'It is ' + time + ' now. Good morning!';
+    //     console.log('aaa');
+    // }
+
+    // console.log(time);
+    // console.log(hello);
+    // console.log(hour);
+    // console.log(minute);
+    // console.log(second);
+
+    //密码明文
+    var flag = false;
+    var sw = document.querySelector('.switch');
+    var pw = document.getElementById('password');
+    console.log(pw);
+    console.log(pw.type);
+    sw.onclick = function() {
+        flag = !flag;
+        if (flag) {
+            pw.type = 'text';
+            console.log(pw.type);
+        } else {
+            pw.type = 'password';
+            console.log(pw.type);
+        }
+    }
+</script>
+
+</html>
