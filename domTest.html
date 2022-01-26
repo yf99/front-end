@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .title{
+        padding: 100px 0 10px 0;
+        text-align: center;
+    }
+    .content{
+        display: block;
+        margin: 0 auto;
+        /* position: relative; */
+        width: 300px;
+        height: 300px;
+        background-color: pink;
+        text-align: center;
+    }
+    #content1{
+        line-height: 300px;
+    }
+    #content2, #content5{
+        padding: 30px;
+        height: 150px;
+        background-color:rgba(221, 221, 221, 0.26);
+    }
+    #content2 input,#content5 input{
+        display: block;
+        margin: 20px auto;
+        width: 200px;
+        height: 30px;
+        border: 0;
+        border-bottom: 1px solid grey;
+        /* 去掉选中后边框 */
+        outline: none;
+    }
+    #content2 button{
+        display: block;
+        margin: auto;
+        border: 0;
+        width: 150px;
+        height: 40px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: pink;
+    }
+    #content3{
+        background: url(image/me.jpg) no-repeat;
+        background-size: cover;
+    }
+    #content4{
+        display: block;
+        text-align: left;
+        background-color: #fff;
+        
+    }
+    #content4 li{
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin: 20px;
+        text-decoration: none;
+        background: url(image/TB1eiXTXlTH8KJjy0FiXXcRsXXa-24-595.png) no-repeat;
+    }
+    #content4 li:hover{
+        cursor: pointer;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="title" id="1">分时问好</div>
+    <div class="content" id="content1">点击我！</div>
+    <div class="title" id="2">密码明文</div>
+    <div class="content" id="content2">
+        <input type="text" name="account" id="">
+        <input type="password">
+        <button>点击显示密码</button>
+    </div>
+    <div class="title" id="3">关闭二维码</div>
+    <div class="content" id="content3"></div>
+    <div class="title" id="4">循环精灵图</div>
+    <div class="content" id="content4">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="title" id="5">密码信息提示</div>
+    <div class="content" id="content5">
+        <input type="text">
+        <p>aaaa</p>
+    </div>
+    
+</body>
+<script>
+//——————————————————————分时问好——————————————————————————
+//获取要变的div和内容
+    var title,pic;
+    title=document.querySelectorAll('.title');
+    pic=document.querySelectorAll('.content');
+    //dialog=document.querySelectorAll('.content');
+    console.log(title);//练习名
+    console.log(pic);//项目
+    // console.log(pic[0]);
+    // console.log(pic[0].style);
+    // console.log(pic[0].style.backGroundColor);
+//获取当前系统时间
+    var date=new Date();
+    var hour=date.getHours();
+    console.log(hour);
+//根据当前小时数判断时段
+    pic[0].onclick=function(){
+        var x=parseInt(hour/8);
+        alert("Success to click!"+x)
+        switch(x)
+        {
+            case 0:
+                pic[0].style.backgroundColor='red';
+                pic[0].innerHTML='早上好！';
+                break;
+            case 1:
+                pic[0].style.backgroundColor='yellow';
+                pic[0].innerHTML='中午好！';
+                break;
+            case 2:
+                pic[0].style.backgroundColor='blue';
+                pic[0].innerHTML='晚上好！';
+                break;
+        }
+    };
+//——————————————————————密码明文——————————————————————————
+    var btn=document.querySelector('#content2 button');
+    var flag=0;
+    console.log(btn);
+    btn.onclick=function(){
+        flag=!flag;
+        console.log("密码是否可见："+flag);
+        if(flag==1){
+            pic[1].children[1].type='text';
+        }else{
+            pic[1].children[1].type='password';
+        }
+
+    }
+//——————————————————————关闭二维码——————————————————————————
+//此处有问题，display：none之后pic[2]无法再点击到
+    var i=0;
+    pic[2].onclick=function(){
+        i++;
+        if(i%2==1){
+            pic[2].style.display='none';
+        }else{
+            pic[2].style.display='block';
+        }
+    }
+//——————————————————————循环精灵图——————————————————————————
+    var list=document.querySelectorAll('#content4 li');
+    console.log(list);
+    for(var i=0;i<12;i++){
+        list[i].style.background='url(image/TB1eiXTXlTH8KJjy0FiXXcRsXXa-24-595.png) no-repeat 0'+'-'+i*44+'px';
+    }
+//——————————————————————密码信息提示——————————————————————————
+    var psd=document.querySelector('#content5 input');
+    var psdTips=document.querySelector('#content5 p');
+    psd.onblur=function(){
+        if(psd.value.length<6){
+            psdTips.innerHTML='密码长度小于6位，请重新设置';
+        }else{
+            psdTips.innerHTML='密码可用';
+        }
+    }
+
+</script>
+</html>
