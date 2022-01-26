@@ -60,6 +60,7 @@
         display: inline-block;
         width: 24px;
         height: 24px;
+        background-size: cover;
         margin: 20px;
         text-decoration: none;
         background: url(image/TB1eiXTXlTH8KJjy0FiXXcRsXXa-24-595.png) no-repeat;
@@ -67,6 +68,18 @@
     #content4 li:hover{
         cursor: pointer;
     }
+    #content6 li{
+        display: inline-block;
+        width: 100px;
+        height: 60px;
+        margin: 20px;
+        text-decoration: none;
+    }
+    #content6 li img{
+
+        height: 100%;
+    }
+    
 </style>
 <head>
     <meta charset="UTF-8">
@@ -106,6 +119,17 @@
     <div class="content" id="content5">
         <input type="text">
         <p>aaaa</p>
+    </div>
+    <div class="title" id="6">百度换肤</div>
+    <div class="content" id="content6">
+        <ul>
+            <li><img src="image/1.jpg"></li>
+            <li><img src="image/2.jpg"></li>
+            <li><img src="image/3.jpg"></li>
+            <li><img src="image/4.jpg"></li>
+            <li><img src="image/5.jpg"></li>
+            <li><img src="image/6.jpg"></li>
+        </ul>
     </div>
     
 </body>
@@ -186,6 +210,20 @@
             psdTips.innerHTML='密码可用';
         }
     }
-
+//——————————————————————百度换肤——————————————————————————
+    var picLi=document.querySelectorAll('#content6 img');
+    console.log(picLi);
+    var body=document.querySelector('body');
+    var bdFlag=0;
+    for(var i=0;i<picLi.length;i++){
+        console.log(i);
+        picLi[i].onclick=function(){
+            //console.log(this.src);
+            body.style.background='url('+this.src+')';
+            body.style.background+='no-repeat';
+            body.style.backgroundSize='cover';
+            body.style.backgroundAttachment='fixed';
+        }
+    }
 </script>
 </html>
